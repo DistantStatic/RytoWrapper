@@ -1,6 +1,8 @@
 import requests
 import apiKey
-# 32020655
+
+# test summoner ID 32020655
+
 class Summoner(object):
 
 	def __init__(self, aName, aRegion):
@@ -60,5 +62,6 @@ class Summoner(object):
 		self.rankedJson = r.json()
 
 		if r.status_code == 200:
+			# TODO: Store champion specific data
 			self.rankedTotal = self.rankedJson['champions'][-1]
 
