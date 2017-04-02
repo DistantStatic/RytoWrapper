@@ -10,7 +10,7 @@ class Summoner(object):
 		self.sumRegion = "".join(aRegion.split()).upper()[:2]
 
 	def load_base_info(self):
-		r = base_requester("/v1.4/summoner/by-name/"  + self.sumRawName)
+		r = base_requester("/v1.4/summoner/by-name/"  + self.sumRawName, self.sumRegion)
 
 		if r.status_code == 200:
 			self.status_code = r.status_code
@@ -22,7 +22,7 @@ class Summoner(object):
 			self.sumId = self.baseJson[self.sumRawName]['id']
 
 	def load_summary(self):
-		r = sbase_requester("/v1.3/stats/by-summoner/" + str(self.sumId) + "/summary")
+		r = base_requester("/v1.3/stats/by-summoner/" + str(self.sumId) + "/summary", self.sumRegion)
 		self.sumJson = r.json()
 
 		if r.status_code == 200:
@@ -37,7 +37,7 @@ class Summoner(object):
 			self.statsNormals = self.sumJson['playerStatSummaries'][8]
 
 	def load_ranked_stats(self):
-		r = base_requester("/v1.3/stats/by-summoner/" + str(self.sumId) + "/ranked")
+		r = base_requester("/v1.3/stats/by-summoner/" + str(self.sumId) + "/ranked", self.sumRegion)
 		self.rankedJson = r.json()
 
 		if r.status_code == 200:

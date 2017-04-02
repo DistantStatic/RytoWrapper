@@ -2,9 +2,9 @@ import requests
 import apiKey
 
 # Universal Parameterized Request
-def base_requester(path):
+def base_requester(path, region):
 	try:
-		crafted = str("https://na.api.riotgames.com/api/lol/" + self.sumRegion + "".join(path.split()).lower() + apiKey.api_key_url)
+		crafted = str("https://na.api.riotgames.com/api/lol/" + region + "".join(path.split()).lower() + apiKey.api_key_url)
 		r = requests.get(crafted)
 		# TODO: Display message about status code other than number itself
 		if r.status_code != 200:
